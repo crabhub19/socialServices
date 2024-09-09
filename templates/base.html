@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/project.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md fixed-top p-0 s-nav mb-5 bg-black bg-opacity-75">
+        {% for message in messages %}
+                {% if message.tags == "success" %}
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-success alert-dissmissible fade show" role="alert">
+                            <strong>Message : </strong>{{message}}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if message.tags == "error" %}
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-danger alert-dissmissible fade show" role="alert">
+                            <strong>Message : </strong>{{message}}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        <div class="container">
+          <a class="navbar-brand" href="#">socialActivities</a>
+          <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">home</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'userlogout' %}">logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'userlogin' %}">login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'signup' %}">createAccount</a>
+              </li>
+              {% endif %}
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+
+
+
+{% block body %}{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} footer {% endcomment %}
+
+      <footer class="container-fluid p-3 pt-1">
+
+        <div class="row mt-3">
+          <div class="col d-flex justify-content-center align-items-center">
+            <div class="header-box mb-4">
+              <h1 class="text-center">Creator</h1>
+              <div class="header-line d-flex">
+                <div class="line-1st"></div>
+                <div class="line-2nd"></div>
+                <div class="line-3rd"></div>
+                <div class="line-2nd"></div>
+                <div class="line-1st"></div>
+              </div>  
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center mt-3">
+          <div class="col-md-6 d-flex justify-content-center mb-3">
+            <div class="footer-image">
+              <img class="" src="{% static 'built_in_image/creator.jpg' %}" alt="" srcset="">
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-center flex-column align-items-md-start">
+            <h4>Xlorex Bishal</h4>
+            <h6>3xbishal@gmail.com</h6>
+            <h6>01703055918</h6>
+            <p>you know who I am.</p>
+          </div>
+        </div>
+      </footer>
+
+
+
+
+      {% comment %} javascript {% endcomment %}
+
+
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+      <script src="{% static 'js/jquery.filterizr.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/typed.umd.js' %}"></script>
+      <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

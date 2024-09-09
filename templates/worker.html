@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}profile{% endblock title %}
+
+{% block body %}
+        <section class="worker secondary py-5">
+                <div class="overflow-hidden">
+                        <div class="row py-3">
+                                <div class="col d-flex justify-content-center align-items-center">
+                                  <div class="header-box mb-4">
+                                    <h1 class="text-center">Worker</h1>
+                                    <div class="header-line d-flex">
+                                      <div class="line-1st"></div>
+                                      <div class="line-2nd"></div>
+                                      <div class="line-3rd"></div>
+                                      <div class="line-2nd"></div>
+                                      <div class="line-1st"></div>
+                                    </div>  
+                                  </div>
+                                </div>
+                        </div>
+
+                        <div class="row py-2">
+                                <div class="col">
+                                        <div class="btn-group d-flex flex-wrap justify-content-center" role="group" aria-label="Basic example">
+                                                {% for i in district %}
+                                                <button type="button" class="btn btn-default border border-1" data-filter="{{i.name}}">{{i.name}}</button>
+                                                {% endfor %}
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                         <!-- Search Bar -->
+                        <div class="row justify-content-center pb-5">
+                                <div class="col-md-6">
+                                 
+                                  <div class="input-group">
+                                    <input class="form-control" placeholder="Search..." type="search" name="filtr-search" value="" data-search="">
+                                  </div>
+                                </div>
+                        </div>
+
+
+
+                        <div class="row d-flex justify-content-center justify-content-sm-start ms-sm-5" id="worker-container">
+                                {% for i in users %}
+                               
+                                {% if i.worker.name == name %}
+                                <div class="col-xxl-3 col-lg-4 col-md-6 worker-box p-0  mb-5 filtr-item" data-category="{{i.district}}"><span class="d-none">{{i.localAddress}}</span>
+                                        <div class="worker-img">
+                                                
+                                                {% if i.userImage %}
+                                                        
+                                                <img src="{{i.userImage.url}}">
+                                                {% endif %}
+
+                                        </div>
+                                        <div class="worker-details p-3">
+                                                <h4>{{i.user.first_name}}</h4>
+                                                <div class="worker-more-details">
+                                                        <h5>{{i.worker}}</h5>
+                                                        <h6>{{i.user.username}}</h6>
+                                                        <h6>{{i.contracNo}}</h6>
+                                                        <h6>{{i.gender}}</h6>
+                                                        <b>{{i.localAddress}}, {{i.district}}</b>
+                                                </div>
+                                        </div>
+                                </div>  
+                               {% endif %}
+
+                                {% endfor %}
+                        </div>
+                </div>
+        </section>
+
+
+
+        {% endblock body %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}index{% endblock title %}
+
+
+
+{% block body %}
+
+      <header id="home">
+        <div class="container-fluid home d-flex justify-content-center align-items-center">
+          <div class="row">
+            <div class="col">
+              <div class="content-box text-center animate__animated animate__bounce">
+                <h4 class="animate__animated animate__rubberBand">Welcome</h4>
+                <h6 class=""><span class="text-for-me"></span></h6>
+                <h1 class="">Here you will <span class="text-for-webservices"></span></h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis a nisi libero modi laudantium deserunt?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, tempore?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+<!-- services----------------------------------------------------------------------------- -->
+      <section class="secondary service">
+        <div class="container">
+
+          <div class="row pt-4">
+            <div class="col d-flex justify-content-center align-items-center">
+              <div class="header-box mb-4">
+                <h1 class="text-center animate__animated animate__infinite	infinite animate__slower animate__heartBeat">Our Services</h1>
+                <div class="header-line d-flex">
+                  <div class="line-1st"></div>
+                  <div class="line-2nd"></div>
+                  <div class="line-3rd"></div>
+                  <div class="line-2nd"></div>
+                  <div class="line-1st"></div>
+                </div>  
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            
+            {% for i in worker %}
+              
+            <div class="col-xxl-3 col-lg-4 col-md-6 d-flex justify-content-center align-items-center mb-5">
+              <div class="service-container d-flex justify-content-center align-items-center">
+                <div class="service-box">
+                  <a href="{% url 'worker' i.name %}">
+                  <div class="service-img-box mt-4">
+                    <img src="{{i.workerImage.url}}" alt="" srcset="">
+                  </div>
+                  <div class="service-title text-center mt-3">
+                      <h3>{{i.name}}</h3>
+                  </div>
+                </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+          
+        </div>
+      </section>
+
+{% endblock body %}

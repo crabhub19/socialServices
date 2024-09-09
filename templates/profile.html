@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}profile{% endblock title %}
+
+{% block body %}
+        <section class="profile secondary pt-5">
+                <div class="container py-5">
+                        <div class="row pt-3 py-5">
+                                <div class="col d-flex justify-content-center align-items-center">
+                                  <div class="header-box mb-4">
+                                    <h1 class="text-center">{{ user.first_name }}'s Profile</h1>
+                                    <div class="header-line d-flex">
+                                      <div class="line-1st"></div>
+                                      <div class="line-2nd"></div>
+                                      <div class="line-3rd"></div>
+                                      <div class="line-2nd"></div>
+                                      <div class="line-1st"></div>
+                                    </div>  
+                                  </div>
+                                </div>
+                              </div>
+                      
+                              <div class="row">
+                                <div class="col-md-4 d-flex flex-column align-items-center align-items-md-start">
+                                  <div>
+                                    <div class="profile-img">
+                                      <img src="{{profile.userImage.url}}" alt="" srcset="">
+                                    </div>
+                                    <div class="profile-details text-center">
+                                      <h4>{{user.first_name}}</h4>
+                                      <h6>{{user.username}}</h6>
+                                      <h6>{{profile.contracNo}}</h6>
+                                      <h6>{{profile.gender}}</h6>
+                                      <h6>{{profile.worker}}</h6>
+                                      <h6>{{profile.localAddress}}, <span>{{profile.district}}</span></h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <h1>Edit</h1>
+                                  <hr>
+                                  <div class="edit-profile">
+                                    <form action="update_contract_user" method="post" enctype="multipart/form-data" class="mt-2">
+                                      {% csrf_token %}
+                                      <div>
+                                          <label class="" for="name">change contract no. :</label>
+                                          <input class="form-control" type="text" name="contracNo" id="contracNo">
+                                      </div>
+                                      <div class="mt-1">
+                                          <button type="submit" class="btn btn-default" href="">Save</button>
+                                      </div>
+                                  </form>
+
+
+                                    <form action="update_userImage_user" method="post" enctype="multipart/form-data" class="mt-2">
+                                      {% csrf_token %}
+                                          <label for="built_in_image">change your profile picture </label>
+                                          <input class="form-control" type="file" name="userImage" id="userImage">
+                                      </div>
+                                      <div class="mt-1">
+                                          <button type="submit" class="btn btn-default" href="">Save</button>
+                                      </div>
+                                  </form>
+
+
+                                    <form action="change_password" method="post" enctype="multipart/form-data" class="mt-2">
+                                      {% csrf_token %}
+                                      <h6>change your password</h6>
+                                      <div class="row">
+                                          <div class="col">
+                                              <input class="form-control" type="password" name="current_password" id="current_password" placeholder="current_password" required>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col">
+                                              <input class="form-control" type="password" name="new_password" id="new_password"placeholder="new_password" required>
+                                          </div>
+                                      </div>
+                                      <div class="row">    
+                                          <div class="col">
+                                              <input class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="confirm_password" required>
+                                          </div>
+                                      </div>
+                                      <div>
+                                      <div class="mt-1">
+                                          <button type="submit" class="btn btn-default" href="">Save</button>
+                                      </div>
+                                  </form>
+                                  </div>
+                                </div>
+                                <div class="col-md-4 mt-5">
+                                    <h5>Do you active now : {{profile.active}}</h5>
+                                    <a href="{% url 'active_account' user.username %}" class="btn btn-success">Yes</a>
+                                    <a href="{% url 'deactive_account' user.username %}" class="btn btn-warning">No</a>
+
+                                  <div class="pt-4">
+                                    <h5>Delete your account</h5>
+                                    <a href="{% url 'delete_account' user.username %}" class="btn btn-danger" ><img src="{% static 'built_in_image\delete.png' %}" width="50px" alt="" srcset=""></a>
+                                  </div>
+                                </div>
+                              </div>
+                </div>
+        </section>
+        {% endblock body %}

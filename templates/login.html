@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock title %}
+
+{% block body %}
+        <section class="login secondary d-flex justify-content-center align-items-center pt-5">
+                <div class="container main-container py-5">
+                        <div class="row main-box pt-1 pe-1 m-1">
+                                <div class="col-md-6 login-img d-flex justify-content-center align-items-center p-5">
+                                        <h1>Join our community</h1>
+                                </div>
+                                <div class="col-md-6 login-details">
+                                        <form action="userlogin" method="post" enctype="multipart/form-data" autocomplete="off">
+                                                {% csrf_token %}
+                                                <h2>Sign in</h2>
+                                                <div class="inputBox">
+                                                        <input type="text" id="username" name="username" required="required">
+                                                        <span>E-mail</span>
+                                                        <i></i>
+                                                </div>
+                                                <div class="inputBox">
+                                                        <input type="password" id="password" name="password" required="required">
+                                                        <span>Password</span>
+                                                        <i></i>
+                                                </div>
+                                                <div class="links mt-3">
+                                                        <h6 class="">If you do not have any account</h6>
+                                                        <a class="" href="{% url 'signup' %}">Signup</a>
+                                                </div>
+                                                <input type="submit" value="Login">
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+        </section>
+        {% endblock body %}
